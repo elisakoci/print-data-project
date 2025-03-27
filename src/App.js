@@ -1,14 +1,15 @@
-import { Layout, Row } from "antd";
-import HeaderComponent from "./components/HeaderComponent";
 import "./App.css";
+import HeaderComponent from "./components/HeaderComponent";
+import FooterComponent from "./components/FooterComponent";
+import TimeSelection from "./components/TimeSelection";
 
 const App = () => {
   return (
-    <Row>
-      <Layout className="App">
-        <HeaderComponent />
-      </Layout>
-    </Row>
+    <>
+      <HeaderComponent />
+      <TimeSelection />
+      <FooterComponent />
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { Layout, Typography, Space, Row, Col, Divider } from "antd";
 import { PhoneOutlined } from "@ant-design/icons";
-import "../App.css";
+import "../styles/mainStyle.css";
 
 const { Header } = Layout;
 const { Link } = Typography;
@@ -8,7 +8,7 @@ const { Link } = Typography;
 const HeaderComponent = () => {
   return (
     <Header className="header">
-      <Row justify="space-between" align="middle" className="header-content">
+      <Row justify="space-between" align="middle" >
         <Col>
           <img src="" alt="Logo" className="logo-image" />
         </Col>
@@ -24,7 +24,7 @@ const HeaderComponent = () => {
           </Space>
         </Col>
       </Row>
-      <Divider className="header-divider" />
+      <Divider />
     </Header>
   );
 };

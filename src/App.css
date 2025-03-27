@@ -17,29 +17,33 @@
   }
 }
 
-.header {
-  background-color: #fff;
-  padding: 10px 20px;
+html, body {
+  height: 100%;  
+  margin: 0;     
 }
 
-.header-content {
-  width: 100%;
+body {
+  display: flex;           
+  flex-direction: column;  
 }
 
-.logo-image {
-  height: 40px; 
+div {
+  display: flex;             
+  flex-direction: column;    
+  flex-grow: 1;              
 }
 
-.right-section {
-  display: flex;
-  align-items: center;
+header {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 10px;
 }
 
-.right-section .ant-typography {
-  margin-right: 15px;
-}
-
-.header-divider {
-  margin-top: 10px;
-  border-color: #d3d3d3;
+footer {
+  padding: 70px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
 }
