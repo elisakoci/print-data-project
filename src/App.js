@@ -1,15 +1,15 @@
-import { Layout} from "antd";
-import Header from "./components/Header";
-import './App.css'; 
+import { Layout, Row } from "antd";
+import HeaderComponent from "./components/HeaderComponent";
+import "./App.css";
 
 const App = () => {
-
   return (
-    <Layout className="App">
-      <Header />
-    </Layout>
+    <Row>
+      <Layout className="App">
+        <HeaderComponent />
+      </Layout>
+    </Row>
   );
 };
 
 export default App;
-
