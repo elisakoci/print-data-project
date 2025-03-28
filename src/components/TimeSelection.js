@@ -1,6 +1,32 @@
-import { Select, Button, Row, Col } from "antd";
+import { useState } from "react";
+import { Select, Button, Row, Col, Form } from "antd";
 
-const TimeSelection = () => {
+const TimeSelection = ({ onContinue }) => {
+  const [selectedTime, setSelectedTime] = useState("");
+
+  const times = [
+    "8 AM CST",
+    "9 AM CST",
+    "10 AM CST",
+    "11 AM CST",
+    "12 PM CST",
+    "1 PM CST",
+    "2 PM CST",
+    "3 PM CST",
+    "4 PM CST",
+    "5 PM CST",
+  ];
+
+  const handleTimeChange = (value) => {
+    setSelectedTime(value);
+  };
+
+  const handleContinue = () => {
+    if (selectedTime) {
+      onContinue({ time: selectedTime });
+    }
+  };
+
   return (
     <>
       <Row
@@ -40,10 +66,32 @@ const TimeSelection = () => {
           </Row>
 
           <Row>
-            <Select placeholder="Select a time">time</Select>
+            <Form >
+              <Form.Item
+                name="time"
+                rules={[{ required: true, message: "Please choose a time!" }]}
+              >
+                <Select
+                  placeholder="Choose your time"
+                  onChange={handleTimeChange}
+                  value={selectedTime}
+                >
+                  {times.map((time, index) => (
+                    <Select.Option key={index} value={time}>
+                      {time}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Form>
           </Row>
           <Row>
-            <Button type="primary" style={{ width: "100%" }}>
+            <Button
+              type="primary"
+              style={{ width: "100%" }}
+              onClick={handleContinue}
+              disabled={!selectedTime}
+            >
               Continue
             </Button>
           </Row>
