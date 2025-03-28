@@ -24,6 +24,8 @@ const TimeSelection = ({ onContinue }) => {
   const handleContinue = () => {
     if (selectedTime) {
       onContinue({ time: selectedTime });
+    } else {
+      alert("Please select a time before continuing");
     }
   };
 
@@ -66,12 +68,13 @@ const TimeSelection = ({ onContinue }) => {
           </Row>
 
           <Row>
-            <Form >
+            <Form>
               <Form.Item
                 name="time"
                 rules={[{ required: true, message: "Please choose a time!" }]}
               >
                 <Select
+                  style={{ width: "100%" }}
                   placeholder="Choose your time"
                   onChange={handleTimeChange}
                   value={selectedTime}
@@ -88,8 +91,8 @@ const TimeSelection = ({ onContinue }) => {
           <Row>
             <Button
               type="primary"
-              style={{ width: "100%" }}
               onClick={handleContinue}
+              style={{ width: "100%" }}
               disabled={!selectedTime}
             >
               Continue

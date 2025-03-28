@@ -8,10 +8,17 @@ import ShowData from "./components/ShowData";
 
 const App = () => {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    time: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    terms: false,
+  });
 
   const handleTimeSelection = (data) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));
+    setFormData((prevData) => ({ ...prevData, time: data.time }));
     setStep(2);
   };
 
@@ -26,7 +33,9 @@ const App = () => {
     <>
       <HeaderComponent />
       {step === 1 && <TimeSelection onContinue={handleTimeSelection} />}
-      {step === 2 && <PersonalDetailsForm onSubmit={handleStep2Submit} />}
+      {step === 2 && (
+        <PersonalDetailsForm onSubmit={handleStep2Submit} formData={formData} />
+      )}
       {step === 3 && <ShowData formData={formData} />}
       <FooterComponent />
     </>

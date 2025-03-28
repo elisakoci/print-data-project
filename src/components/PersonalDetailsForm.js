@@ -1,37 +1,53 @@
 import { useState } from "react";
 import { Form, Input, Button, Checkbox, Row } from "antd";
 
-const PersonalDetailsForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    terms: false,
-  });
+const PersonalDetailsForm = ({ onSubmit, formData }) => {
+  const [firstName, setFirstName] = useState(formData.firstName);
+  const [lastName, setLastName] = useState(formData.lastName);
+  const [phone, setPhone] = useState(formData.phone);
+  const [email, setEmail] = useState(formData.email);
+  const [terms, setTerms] = useState(formData.terms);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    switch (name) {
+      case "firstName":
+        setFirstName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "phone":
+        setPhone(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleCheckboxChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      terms: e.target.checked,
-    }));
+    setTerms(e.target.checked);
   };
 
   const handleSubmit = () => {
-    if (formData.terms) {
-      onSubmit(formData);
+    if (terms) {
+      onSubmit({
+        ...formData,
+        firstName,
+        lastName,
+        phone,
+        email,
+        terms,
+      });
     } else {
       alert("You must agree to the terms and conditions.");
     }
   };
+
+  console.log(44, formData);
 
   return (
     <>
@@ -51,55 +67,68 @@ const PersonalDetailsForm = ({ onSubmit }) => {
         <Form onFinish={handleSubmit}>
           <Form.Item
             name="firstName"
+            initialValue={formData.firstName}
             rules={[
               { required: true, message: "Please enter your first name!" },
             ]}
-            value={formData.firstName}
-            onChange={handleChange}
           >
-            <Input placeholder="First Name" />
+            <Input
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
           </Form.Item>
           <Form.Item
             name="lastName"
+            initialValue={formData.lastName}
             rules={[
               { required: true, message: "Please enter your last name!" },
             ]}
-            value={formData.lastName}
-            onChange={handleChange}
           >
-            <Input placeholder="Last Name" />
+            <Input
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
           </Form.Item>
           <Form.Item
             name="email"
+            initialValue={formData.email}
             rules={[
               { required: true, message: "Please enter your email!" },
               { type: "email", message: "Please enter a valid email!" },
             ]}
-            value={formData.email}
-            onChange={handleChange}
           >
-            <Input placeholder="Email" />
+            <Input
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </Form.Item>
           <Form.Item
             name="phone"
+            initialValue={formData.phone}
             rules={[
               { required: true, message: "Please enter your phone number!" },
             ]}
-            value={formData.phone}
-            onChange={handleChange}
           >
-            <Input placeholder="Phone Number" />
+            <Input
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+            />
           </Form.Item>
           <Form.Item
-            name="agree"
+            name="terms"
             valuePropName="checked"
+            initialValue={formData.terms}
             rules={[
               { required: true, message: "You must agree to the terms!" },
             ]}
-            checked={formData.terms}
-            onChange={handleCheckboxChange}
           >
-            <Checkbox>I agree to the terms and conditions</Checkbox>
+            <Checkbox checked={formData.terms} onChange={handleCheckboxChange}>
+              I agree to the terms and conditions
+            </Checkbox>
           </Form.Item>
           <Button type="primary" htmlType="submit">
             SUBMIT YOUR DETAILS

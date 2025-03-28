@@ -24,6 +24,10 @@ const ShowData = ({ formData }) => {
           <Paragraph>
             <strong>Email:</strong> {formData.email}
           </Paragraph>
+          <Paragraph>
+            <strong>Terms and Conditions:</strong>{" "}
+            {formData.terms ? "Agreed" : "Not agreed"}
+          </Paragraph>
         </Col>
       </Row>
     </div>
