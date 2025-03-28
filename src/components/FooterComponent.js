@@ -15,7 +15,7 @@ const FooterComponent = () => {
   });
   return (
     <Footer>
-      <Text >{footerText}</Text>
+      <Text>{footerText}</Text>
     </Footer>
   );
 };
